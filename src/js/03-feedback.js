@@ -2,7 +2,7 @@ var throttle = require('lodash.throttle');
 
 const form = document.querySelector('.feedback-form');
 form.addEventListener('input', throttle(getData, 500));
-form.addEventListener('submit', cleanData)
+form.addEventListener('submit', clearData)
 
 const data = {
 };
@@ -12,8 +12,8 @@ function autoComplete() {
     if (localStorage.getItem("feedback-form-state")) {
         const storageData = localStorage.getItem("feedback-form-state");
         const { email, message } = JSON.parse(storageData);
-        form.email.textContent = email;
-        form.message.textContent = message;
+        form.email.value = email;
+        form.message.value = message;
     }
 }
 
@@ -24,7 +24,7 @@ function getData(event) {
 };
 
 
-function cleanData(event) { 
+function clearData(event) { 
     event.preventDefault();
     const data = localStorage.getItem("feedback-form-state");
     console.log(JSON.parse(data));
