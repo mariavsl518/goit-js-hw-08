@@ -9,10 +9,12 @@ const data = {
 
 autoComplete();
 function autoComplete() {
-    const storageData = localStorage.getItem("feedback-form-state");
-    const { email, message } = JSON.parse(storageData);
+    if (localStorage.getItem("feedback-form-state")) {
+        const storageData = localStorage.getItem("feedback-form-state");
+        const { email, message } = JSON.parse(storageData);
         form.email.textContent = email;
         form.message.textContent = message;
+    }
 }
 
 function getData(event) {
